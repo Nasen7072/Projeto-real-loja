@@ -52,7 +52,6 @@ const productGrid = document.querySelector('.product-grid');
 const cartIcon = document.querySelector('.cart-icon');
 const cartCount = document.querySelector('.cart-count');
 const cartModal = document.querySelector('.cart-modal');
-const cartContent = document.querySelector('.cart-content');
 const closeCart = document.querySelector('.close-cart');
 const cartItems = document.querySelector('.cart-items');
 const cartTotal = document.querySelector('.cart-total span');
@@ -60,6 +59,11 @@ const checkoutBtn = document.querySelector('.checkout-btn');
 
 // Carregar produtos
 function loadProducts() {
+    if (!productGrid) {
+        console.error("Elemento .product-grid não encontrado");
+        return;
+    }
+    
     productGrid.innerHTML = '';
     
     products.forEach(product => {
@@ -91,6 +95,11 @@ function addToCart(e) {
     const productId = parseInt(e.target.getAttribute('data-id'));
     const product = products.find(p => p.id === productId);
     
+    if (!product) {
+        console.error("Produto não encontrado");
+        return;
+    }
+    
     // Verificar se o produto já está no carrinho
     const existingItem = cart.find(item => item.id === productId);
     
@@ -110,38 +119,44 @@ function addToCart(e) {
 // Atualizar carrinho
 function updateCart() {
     // Atualizar contador
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    cartCount.textContent = totalItems;
+    if (cartCount) {
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
     
     // Atualizar itens no modal
-    cartItems.innerHTML = '';
-    
-    let totalPrice = 0;
-    
-    cart.forEach(item => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <div>Qtd: ${item.quantity}</div>
-            </div>
-            <div class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2)}</div>
-            <div class="remove-item" data-id="${item.id}">&times;</div>
-        `;
+    if (cartItems) {
+        cartItems.innerHTML = '';
         
-        cartItems.appendChild(cartItem);
-        totalPrice += item.price * item.quantity;
-    });
-    
-    // Atualizar total
-    cartTotal.textContent = totalPrice.toFixed(2);
-    
-    // Adicionar eventos aos botões de remover
-    document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', removeFromCart);
-    });
+        let totalPrice = 0;
+        
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <div>Qtd: ${item.quantity}</div>
+                </div>
+                <div class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2)}</div>
+                <div class="remove-item" data-id="${item.id}">&times;</div>
+            `;
+            
+            cartItems.appendChild(cartItem);
+            totalPrice += item.price * item.quantity;
+        });
+        
+        // Atualizar total
+        if (cartTotal) {
+            cartTotal.textContent = totalPrice.toFixed(2);
+        }
+        
+        // Adicionar eventos aos botões de remover
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', removeFromCart);
+        });
+    }
 }
 
 // Remover do carrinho
@@ -177,20 +192,30 @@ function checkout() {
         return;
     }
     
-    alert(`Compra finalizada! Total: R$ ${cartTotal.textContent}`);
+    alert(`Compra finalizada! Total: R$ ${cartTotal ? cartTotal.textContent : '0.00'}`);
     cart = [];
     updateCart();
-    cartModal.style.display = 'none';
+    if (cartModal) {
+        cartModal.style.display = 'none';
+    }
 }
 
 // Event Listeners
-cartIcon.addEventListener('click', () => {
-    cartModal.style.display = 'flex';
-});
+if (cartIcon) {
+    cartIcon.addEventListener('click', () => {
+        if (cartModal) {
+            cartModal.style.display = 'flex';
+        }
+    });
+}
 
-closeCart.addEventListener('click', () => {
-    cartModal.style.display = 'none';
-});
+if (closeCart) {
+    closeCart.addEventListener('click', () => {
+        if (cartModal) {
+            cartModal.style.display = 'none';
+        }
+    });
+}
 
 window.addEventListener('click', (e) => {
     if (e.target === cartModal) {
@@ -198,7 +223,9 @@ window.addEventListener('click', (e) => {
     }
 });
 
-checkoutBtn.addEventListener('click', checkout);
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', checkout);
+}
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
@@ -226,4 +253,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     `;
     document.head.appendChild(style);
-});
+}
