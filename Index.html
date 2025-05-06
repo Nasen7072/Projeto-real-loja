@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="styles.css"media="screen" />
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerSupps - Suplementos de Qualidade</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>PowerSupps</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Suplementos de Alta Qualidade</h2>
+            <p>Desempenho máximo para seus treinos</p>
+            <a href="#produtos" class="btn">Ver Produtos</a>
+        </div>
+    </section>
+
+    <section id="produtos" class="products">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="product-grid">
+                <!-- Produtos serão adicionados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>A PowerSupps é especializada em fornecer os melhores suplementos alimentares para atletas e entusiastas do fitness. Nossos produtos são testados e aprovados por profissionais.</p>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <h2>Contato</h2>
+            <form>
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu Email" required>
+                <textarea placeholder="Sua Mensagem" required></textarea>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 PowerSupps. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div class="cart-items">
+                <!-- Itens do carrinho serão adicionados aqui -->
+            </div>
+            <div class="cart-total">
+                <strong>Total: R$ <span>0.00</span></strong>
+            </div>
+            <button class="btn checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
