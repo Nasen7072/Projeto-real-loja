@@ -350,3 +350,37 @@ footer {
         font-size: 18px;
     }
 }
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+    }
+
+    .cart-icon {
+        font-size: 18px;
+    }
+
+    .contact input, .contact textarea {
+        font-size: 14px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+    }
+
+    .product-info p {
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 18px;
+    }
+}
