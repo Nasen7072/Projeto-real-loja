@@ -1,91 +1,749 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="styles.css"media="screen" />
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerSupps - Suplementos de Qualidade</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>NutriSuplementos - Loja de Suplementos Acessível</title>
+    <style>
+        /* CSS Reset e Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #FF8F00;
+            --dark-color: #263238;
+            --light-color: #f5f5f5;
+            --font-main: 'Segoe UI', Arial, sans-serif;
+            --font-size-base: 16px;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #fff;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Navegação */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        /* Controles de Acessibilidade */
+        .accessibility-controls {
+            background-color: var(--dark-color);
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .accessibility-btn {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .accessibility-btn:hover, .accessibility-btn:focus {
+            background-color: white;
+            color: var(--dark-color);
+        }
+        
+        /* Conteúdo Principal */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .hero {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Produtos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            padding: 1rem;
+        }
+        
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover, .add-to-cart:focus {
+            background-color: #e65100;
+            outline: none;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover, .footer-section ul li a:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+        }
+        
+        /* Modal de Acessibilidade */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-option {
+            margin-bottom: 1rem;
+        }
+        
+        .modal-option label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .modal-option select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .modal-btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        .modal-btn-secondary {
+            background-color: #ddd;
+            border: none;
+        }
+        
+        /* Classes de Acessibilidade */
+        .high-contrast {
+            background-color: black !important;
+            color: white !important;
+        }
+        
+        .high-contrast header,
+        .high-contrast footer,
+        .high-contrast .accessibility-controls {
+            background-color: #000 !important;
+            border-color: yellow !important;
+        }
+        
+        .high-contrast a,
+        .high-contrast .product-title,
+        .high-contrast .product-price {
+            color: yellow !important;
+        }
+        
+        .high-contrast .add-to-cart {
+            background-color: yellow !important;
+            color: black !important;
+        }
+        
+        .large-text {
+            font-size: 20px !important;
+        }
+        
+        .extra-large-text {
+            font-size: 24px !important;
+        }
+        
+        .dyslexia-friendly {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif !important;
+            line-height: 1.8 !important;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .accessibility-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Skip Link para Teclado */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip Link para Navegação por Teclado -->
+    <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+    
+    <!-- Cabeçalho -->
     <header>
-        <div class="container">
+        <div class="header-container">
             <div class="logo">
-                <h1>PowerSupps</h1>
+                <a href="#">NutriSuplementos</a>
             </div>
-            <nav>
+            <nav aria-label="Navegação principal">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#produtos">Produtos</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
-            <div class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span> <!-- Contador do carrinho -->
-            </div>
         </div>
     </header>
-
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Suplementos de Alta Qualidade</h2>
-            <p>Desempenho máximo para seus treinos</p>
-            <a href="#produtos" class="btn">Ver Produtos</a>
-        </div>
-    </section>
-
-    <section id="produtos" class="products">
-        <div class="container">
-            <h2>Nossos Produtos</h2>
-            <div class="product-grid">
-                <!-- Produtos serão adicionados via JavaScript -->
+    
+    <!-- Controles de Acessibilidade -->
+    <div class="accessibility-controls">
+        <button class="accessibility-btn" id="contrast-btn">Alto Contraste</button>
+        <button class="accessibility-btn" id="font-increase-btn">A+</button>
+        <button class="accessibility-btn" id="font-decrease-btn">A-</button>
+        <button class="accessibility-btn" id="dyslexia-btn">Fonte Dislexia</button>
+        <button class="accessibility-btn" id="accessibility-modal-btn">Mais Opções</button>
+    </div>
+    
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        <section class="hero" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Suplementos de Qualidade para Sua Saúde</h1>
+            <p>Encontre os melhores suplementos alimentares com os melhores preços do mercado.</p>
+        </section>
+        
+        <section aria-labelledby="products-heading">
+            <h2 id="products-heading" style="text-align: center; margin-bottom: 1rem;">Nossos Produtos</h2>
+            <div class="products-grid">
+                <!-- Produto 1 -->
+                <article class="product-card" aria-labelledby="product1-title">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200?text=Whey+Protein" alt="Pote de Whey Protein">
+                    </div>
+                    <div class="product-info">
+                        <h3 id="product1-title" class="product-title">Whey Protein Concentrado</h3>
+                        <div class="product-price">R$ 129,90</div>
+                        <p class="product-description">Proteína de alta qualidade para recuperação muscular e ganho de massa.</p>
+                        <button class="add-to-cart" aria-label="Adicionar Whey Protein ao carrinho">Comprar</button>
+                    </div>
+                </article>
+                
+                <!-- Produto 2 -->
+                <article class="product-card" aria-labelledby="product2-title">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200?text=Creatina" alt="Pote de Creatina">
+                    </div>
+                    <div class="product-info">
+                        <h3 id="product2-title" class="product-title">Creatina Monohidratada</h3>
+                        <div class="product-price">R$ 89,90</div>
+                        <p class="product-description">Aumente sua força e resistência nos treinos com nossa creatina pura.</p>
+                        <button class="add-to-cart" aria-label="Adicionar Creatina ao carrinho">Comprar</button>
+                    </div>
+                </article>
+                
+                <!-- Produto 3 -->
+                <article class="product-card" aria-labelledby="product3-title">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200?text=BCAA" alt="Pote de BCAA">
+                    </div>
+                    <div class="product-info">
+                        <h3 id="product3-title" class="product-title">BCAA em Pó</h3>
+                        <div class="product-price">R$ 69,90</div>
+                        <p class="product-description">Aminoácidos essenciais para recuperação muscular e redução de fadiga.</p>
+                        <button class="add-to-cart" aria-label="Adicionar BCAA ao carrinho">Comprar</button>
+                    </div>
+                </article>
+                
+                <!-- Produto 4 -->
+                <article class="product-card" aria-labelledby="product4-title">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/250x200?text=Multivitamínico" alt="Frasco de Multivitamínico">
+                    </div>
+                    <div class="product-info">
+                        <h3 id="product4-title" class="product-title">Multivitamínico Completo</h3>
+                        <div class="product-price">R$ 59,90</div>
+                        <p class="product-description">Todas as vitaminas e minerais essenciais para sua saúde diária.</p>
+                        <button class="add-to-cart" aria-label="Adicionar Multivitamínico ao carrinho">Comprar</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Nossas Lojas</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Atendimento</h3>
+                <ul>
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Perguntas Frequentes</a></li>
+                    <li><a href="#">Formas de Pagamento</a></li>
+                    <li><a href="#">Entregas e Prazos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li>Email: contato@nutrisuplementos.com.br</li>
+                    <li>Telefone: (11) 1234-5678</li>
+                    <li>WhatsApp: (11) 98765-4321</li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <section id="sobre" class="about">
-        <div class="container">
-            <h2>Sobre Nós</h2>
-            <p>A PowerSupps é especializada em fornecer os melhores suplementos alimentares para atletas e entusiastas do fitness. Nossos produtos são testados e aprovados por profissionais.</p>
-        </div>
-    </section>
-
-    <section id="contato" class="contact">
-        <div class="container">
-            <h2>Contato</h2>
-            <form>
-                <input type="text" placeholder="Seu Nome" required>
-                <input type="email" placeholder="Seu Email" required>
-                <textarea placeholder="Sua Mensagem" required></textarea>
-                <button type="submit" class="btn">Enviar</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 PowerSupps. Todos os direitos reservados.</p>
+        
+        <div class="copyright">
+            <p>&copy; 2023 NutriSuplementos. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-    <!-- Modal do Carrinho -->
-    <div class="cart-modal">
-        <div class="cart-content">
-            <span class="close-cart">&times;</span>
-            <h2>Seu Carrinho</h2>
-            <div class="cart-items">
-                <!-- Itens do carrinho serão adicionados aqui -->
+    
+    <!-- Modal de Acessibilidade -->
+    <div class="modal" id="accessibility-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">Configurações de Acessibilidade</h2>
+                <button class="close-modal" id="close-modal" aria-label="Fechar modal">&times;</button>
             </div>
-            <div class="cart-total">
-                <strong>Total: R$ <span>0.00</span></strong>
+            
+            <div class="modal-option">
+                <label for="font-family-select">Tipo de Fonte:</label>
+                <select id="font-family-select">
+                    <option value="default">Padrão</option>
+                    <option value="dyslexia">Fonte para Dislexia</option>
+                    <option value="sans-serif">Sem Serifa</option>
+                    <option value="serif">Com Serifa</option>
+                </select>
             </div>
-            <button class="btn checkout-btn">Finalizar Compra</button>
+            
+            <div class="modal-option">
+                <label for="font-size-select">Tamanho da Fonte:</label>
+                <select id="font-size-select">
+                    <option value="default">Padrão</option>
+                    <option value="large">Grande</option>
+                    <option value="extra-large">Extra Grande</option>
+                </select>
+            </div>
+            
+            <div class="modal-option">
+                <label for="color-scheme-select">Esquema de Cores:</label>
+                <select id="color-scheme-select">
+                    <option value="default">Padrão</option>
+                    <option value="high-contrast">Alto Contraste</option>
+                    <option value="dark-mode">Modo Escuro</option>
+                </select>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" id="cancel-modal">Cancelar</button>
+                <button class="modal-btn modal-btn-primary" id="apply-modal">Aplicar</button>
+            </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
+    
+    <script>
+        // JavaScript para Funcionalidades de Acessibilidade
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos do DOM
+            const body = document.body;
+            const contrastBtn = document.getElementById('contrast-btn');
+            const fontIncreaseBtn = document.getElementById('font-increase-btn');
+            const fontDecreaseBtn = document.getElementById('font-decrease-btn');
+            const dyslexiaBtn = document.getElementById('dyslexia-btn');
+            const accessibilityModalBtn = document.getElementById('accessibility-modal-btn');
+            const closeModalBtn = document.getElementById('close-modal');
+            const cancelModalBtn = document.getElementById('cancel-modal');
+            const applyModalBtn = document.getElementById('apply-modal');
+            const modal = document.getElementById('accessibility-modal');
+            const fontFamilySelect = document.getElementById('font-family-select');
+            const fontSizeSelect = document.getElementById('font-size-select');
+            const colorSchemeSelect = document.getElementById('color-scheme-select');
+            
+            // Controle de Alto Contraste
+            contrastBtn.addEventListener('click', function() {
+                body.classList.toggle('high-contrast');
+                localStorage.setItem('highContrast', body.classList.contains('high-contrast'));
+            });
+            
+            // Controle de Tamanho da Fonte
+            fontIncreaseBtn.addEventListener('click', function() {
+                if (body.classList.contains('extra-large-text')) return;
+                
+                if (body.classList.contains('large-text')) {
+                    body.classList.remove('large-text');
+                    body.classList.add('extra-large-text');
+                } else {
+                    body.classList.add('large-text');
+                }
+                
+                updateFontSizeInLocalStorage();
+            });
+            
+            fontDecreaseBtn.addEventListener('click', function() {
+                if (body.classList.contains('extra-large-text')) {
+                    body.classList.remove('extra-large-text');
+                    body.classList.add('large-text');
+                } else if (body.classList.contains('large-text')) {
+                    body.classList.remove('large-text');
+                }
+                
+                updateFontSizeInLocalStorage();
+            });
+            
+            function updateFontSizeInLocalStorage() {
+                let fontSize = 'default';
+                if (body.classList.contains('large-text')) fontSize = 'large';
+                if (body.classList.contains('extra-large-text')) fontSize = 'extra-large';
+                localStorage.setItem('fontSize', fontSize);
+            }
+            
+            // Controle de Fonte para Dislexia
+            dyslexiaBtn.addEventListener('click', function() {
+                body.classList.toggle('dyslexia-friendly');
+                localStorage.setItem('dyslexiaFriendly', body.classList.contains('dyslexia-friendly'));
+            });
+            
+            // Controle do Modal de Acessibilidade
+            accessibilityModalBtn.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelModalBtn.addEventListener('click', closeModal);
+            
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Aplicar configurações do modal
+            applyModalBtn.addEventListener('click', function() {
+                // Aplicar tipo de fonte
+                body.classList.remove('dyslexia-friendly');
+                if (fontFamilySelect.value === 'dyslexia') {
+                    body.classList.add('dyslexia-friendly');
+                    localStorage.setItem('dyslexiaFriendly', 'true');
+                } else {
+                    localStorage.setItem('dyslexiaFriendly', 'false');
+                }
+                
+                // Aplicar tamanho da fonte
+                body.classList.remove('large-text', 'extra-large-text');
+                if (fontSizeSelect.value === 'large') {
+                    body.classList.add('large-text');
+                } else if (fontSizeSelect.value === 'extra-large') {
+                    body.classList.add('extra-large-text');
+                }
+                localStorage.setItem('fontSize', fontSizeSelect.value);
+                
+                // Aplicar esquema de cores
+                body.classList.remove('high-contrast');
+                if (colorSchemeSelect.value === 'high-contrast') {
+                    body.classList.add('high-contrast');
+                    localStorage.setItem('highContrast', 'true');
+                } else {
+                    localStorage.setItem('highContrast', 'false');
+                }
+                
+                closeModal();
+            });
+            
+            // Carregar preferências salvas
+            function loadPreferences() {
+                // Carregar alto contraste
+                if (localStorage.getItem('highContrast') === 'true') {
+                    body.classList.add('high-contrast');
+                    colorSchemeSelect.value = 'high-contrast';
+                }
+                
+                // Carregar tamanho da fonte
+                const fontSize = localStorage.getItem('fontSize');
+                if (fontSize === 'large') {
+                    body.classList.add('large-text');
+                    fontSizeSelect.value = 'large';
+                } else if (fontSize === 'extra-large') {
+                    body.classList.add('extra-large-text');
+                    fontSizeSelect.value = 'extra-large';
+                }
+                
+                // Carregar fonte para dislexia
+                if (localStorage.getItem('dyslexiaFriendly') === 'true') {
+                    body.classList.add('dyslexia-friendly');
+                    fontFamilySelect.value = 'dyslexia';
+                }
+            }
+            
+            loadPreferences();
+            
+            // Fechar modal ao pressionar ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    closeModal();
+                }
+            });
+            
+            // Adicionar foco visível para elementos interativos
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'Tab') {
+                    const focusedElement = document.activeElement;
+                    if (focusedElement instanceof HTMLElement) {
+                        focusedElement.style.outline = '2px solid var(--secondary-color)';
+                        focusedElement.style.outlineOffset = '2px';
+                    }
+                }
+            });
+            
+            // Adicionar rótulos ARIA para melhorar acessibilidade
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                const productTitle = button.closest('.product-card').querySelector('.product-title').textContent;
+                button.setAttribute('aria-label', `Adicionar ${productTitle} ao carrinho`);
+            });
+        });
+    </script>
 </body>
 </html>
